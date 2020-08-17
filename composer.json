@@ -1,0 +1,19 @@
+{
+  "name": "snappmarket/auth-communicator",
+  "authors": [
+    {
+      "name": "Hamid Zamani",
+      "email": "hamidzamani.ce@gmail.com"
+    }
+  ],
+  "require": {
+    "snappmarket/php-rest-communicator": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SnappMarket\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": false
+}
