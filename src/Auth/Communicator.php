@@ -28,7 +28,7 @@ class Communicator extends BasicCommunicator
         $data = json_decode($response->getBody()->__toString(), true);
 
         $response = new LoginResponse();
-        $response->setToken($data['toke']);
+        $response->setToken($data['token']);
         $response->setUserId($data['user_id']);
 
         return $response;

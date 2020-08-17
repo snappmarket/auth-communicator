@@ -35,7 +35,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597476406751</updated>
-      <workItem from="1597476408237" duration="9221000" />
+      <workItem from="1597476408237" duration="11758000" />
     </task>
     <servers />
   </component>
@@ -67,5 +67,9 @@
       <screen x="0" y="216" width="1920" height="864" />
     </state>
     <state x="1014" y="119" width="671" height="600" key="NewPhpClassDialog/1920.189.1366.768/0.216.1920.864@0.216.1920.864" timestamp="1597650823752" />
+    <state x="677" y="214" width="555" height="658" key="svn.repositoryBrowser" timestamp="1597651738517">
+      <screen x="0" y="216" width="1920" height="864" />
+    </state>
+    <state x="677" y="214" width="555" height="658" key="svn.repositoryBrowser/1920.189.1366.768/0.216.1920.864@0.216.1920.864" timestamp="1597651738517" />
   </component>
 </project>
