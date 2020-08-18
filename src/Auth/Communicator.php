@@ -2,6 +2,7 @@
 
 namespace SnappMarket\Auth;
 
+use SnappMarket\Auth\DataContracts\HasPermissionDto;
 use SnappMarket\Auth\DataContracts\LoginByUsernameDto;
 use SnappMarket\Auth\Exceptions\LoginException;
 use SnappMarket\Auth\Responses\LoginResponse;
@@ -32,5 +33,24 @@ class Communicator extends BasicCommunicator
         $response->setUserId($data['results']['user_id']);
 
         return $response;
+    }
+
+    public function hasPermission(HasPermissionDto $userData)
+    {
+        $response = $this->request(self::METHOD_POST, '/api/v1/auth/hasPermission', [
+            'query' => [
+                'token' => $userData->getToken(),
+                'permission' => $userData->getPermission(),
+                'constraint' => $userData->getConstraint()
+            ]
+        ]);
+
+        if ($response->getStatusCode() != 200) {
+            throw new LoginException();
+        }
+
+        $data = json_decode($response->getBody()->__toString(), true);
+
+        return $data['results']['authorized'];
     }
 }
