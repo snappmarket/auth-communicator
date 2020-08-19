@@ -2,6 +2,7 @@
 
 namespace SnappMarket\Auth;
 
+use SnappMarket\Auth\DataContracts\HasAllPermissionsDto;
 use SnappMarket\Auth\DataContracts\HasPermissionDto;
 use SnappMarket\Auth\DataContracts\LoginByUsernameDto;
 use SnappMarket\Auth\Exceptions\LoginException;
@@ -35,14 +36,12 @@ class Communicator extends BasicCommunicator
         return $response;
     }
 
-    public function hasPermission(HasPermissionDto $userData)
+    public function hasAllPermissions(HasAllPermissionsDto $userData)
     {
-        $response = $this->request(self::METHOD_POST, '/api/v1/auth/hasPermission', [
-            'query' => [
-                'token' => $userData->getToken(),
-                'permission' => $userData->getPermission(),
-                'constraint' => $userData->getConstraint()
-            ]
+        $response = $this->request(self::METHOD_GET, '/api/v1/auth/hasAllPermissions', [
+             'token'       => $userData->getToken(),
+             'permissions' => $userData->getPermissions(),
+             'constraints' => $userData->getConstraints(),
         ]);
 
         if ($response->getStatusCode() != 200) {
