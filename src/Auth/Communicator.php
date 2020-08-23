@@ -93,6 +93,7 @@ class Communicator extends BasicCommunicator
 
 
 
+
     public function hasAllPermissions(HasAllPermissionsDto $userData)
     {
         $response = $this->request(self::METHOD_GET, '/api/v1/auth/hasAllPermissions', [
@@ -104,6 +105,19 @@ class Communicator extends BasicCommunicator
         $data = json_decode($response->getBody()->__toString(), true);
 
         return $data['results']['authorized'];
+    }
+
+
+
+    public function refresh(string $token)
+    {
+        $response = $this->request(self::METHOD_POST, '/api/v1/users/refresh', [
+             'token' => $token,
+        ]);
+
+        $data = json_decode($response->getBody()->__toString(), true);
+
+        return $data['results']['token'];
     }
 
 
