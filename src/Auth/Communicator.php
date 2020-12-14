@@ -148,9 +148,13 @@ class Communicator extends BasicCommunicator
 
     protected function getRequestFailureErrorCode(RequestException $exception): ?string
     {
+        if ($exception->getCode() == 200) {
+            return null;
+        }
+
         $response = $exception->getResponse();
 
-        if ($exception->getResponse()->getStatusCode() == 200) {
+        if (!$response) {
             return null;
         }
 
