@@ -134,6 +134,13 @@ class Communicator extends BasicCommunicator
         try {
             $response = parent::request($method, $uri, $parameters, $headers);
         } catch (RequestException $exception) {
+            if ($exception->hasResponse()) {
+                $statusCode = $exception->getResponse()->getStatusCode();
+                if (in_array($statusCode, [401, 403])) {
+                    throw new LoginException('', 0, null, $statusCode);
+                }
+            }
+            
             if ($this->getRequestFailureErrorCode($exception) == static::INVALID_TOKEN_CODE) {
                 throw new InvalidTokenException();
             }
